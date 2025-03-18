@@ -59,7 +59,7 @@ public class Fraction
         int newDenominator = Denominator * other.Denominator;
         return new Fraction(newNumerator, newDenominator);
     }
-
+   
     public Fraction Divide(Fraction other)
     {
         if (other.Numerator == 0)
