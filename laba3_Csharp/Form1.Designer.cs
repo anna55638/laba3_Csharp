@@ -37,12 +37,12 @@
             lblResult = new Label();
             label1 = new Label();
             label2 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // cmbOperation
             // 
             cmbOperation.FormattingEnabled = true;
-            cmbOperation.Items.AddRange(new object[] { "+", "-", "*", "/" });
             cmbOperation.Location = new Point(70, 29);
             cmbOperation.Name = "cmbOperation";
             cmbOperation.Size = new Size(50, 28);
@@ -89,7 +89,7 @@
             // lblResult
             // 
             lblResult.AutoSize = true;
-            lblResult.Location = new Point(194, 101);
+            lblResult.Location = new Point(81, 180);
             lblResult.Name = "lblResult";
             lblResult.Size = new Size(0, 20);
             lblResult.TabIndex = 6;
@@ -107,17 +107,28 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(126, 29);
+            label2.Location = new Point(127, 30);
             label2.Name = "label2";
             label2.Size = new Size(57, 20);
             label2.TabIndex = 8;
             label2.Text = "________";
+            label2.Click += label2_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(24, 180);
+            label3.Name = "label3";
+            label3.Size = new Size(51, 20);
+            label3.TabIndex = 9;
+            label3.Text = "Ответ:";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(549, 295);
+            ClientSize = new Size(277, 256);
+            Controls.Add(label3);
             Controls.Add(lblResult);
             Controls.Add(btnCalculate);
             Controls.Add(txtDenominator2);
@@ -145,5 +156,6 @@
         private Label lblResult;
         private Label label1;
         private Label label2;
+        private Label label3;
     }
 }

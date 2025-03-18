@@ -8,7 +8,7 @@ public class Fraction
     public Fraction(int numerator, int denominator)
     {
         if (denominator == 0)
-            throw new ArgumentException("Denominator cannot be zero.");
+            throw new ArgumentException("Знаменатель не может быть равен нулю.");
 
         Numerator = numerator;
         Denominator = denominator;
@@ -63,7 +63,7 @@ public class Fraction
     public Fraction Divide(Fraction other)
     {
         if (other.Numerator == 0)
-            throw new DivideByZeroException("Cannot divide by zero.");
+            throw new DivideByZeroException("Невозможно разделить на ноль.");
 
         int newNumerator = Numerator * other.Denominator;
         int newDenominator = Denominator * other.Numerator;
@@ -76,11 +76,11 @@ public class Fraction
         int crossProduct2 = other.Numerator * Denominator;
 
         if (crossProduct1 < crossProduct2)
-            return -1;
+            return -1; // Первая дробь меньше
         else if (crossProduct1 > crossProduct2)
-            return 1;
+            return 1; // Первая дробь больше
         else
-            return 0;
+            return 0; // Дроби равны
     }
 
     public override string ToString()

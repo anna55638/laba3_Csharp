@@ -7,26 +7,25 @@ namespace laba3_Csharp
     {
         public Form1()
         {
-            InitializeComponent(); // Инициализация компонентов, созданных в дизайнере
+            InitializeComponent();
+            btnCalculate.Click += btnCalculate_Click;
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             try
             {
-                // Получаем значения из текстовых полей
                 int numerator1 = int.Parse(txtNumerator1.Text);
                 int denominator1 = int.Parse(txtDenominator1.Text);
                 int numerator2 = int.Parse(txtNumerator2.Text);
                 int denominator2 = int.Parse(txtDenominator2.Text);
 
-                // Создаем объекты Fraction
                 Fraction f1 = new Fraction(numerator1, denominator1);
                 Fraction f2 = new Fraction(numerator2, denominator2);
 
                 Fraction result = null;
+                string comparisonResult = "";
 
-                // Выполняем операцию в зависимости от выбора в ComboBox
                 switch (cmbOperation.SelectedItem?.ToString())
                 {
                     case "+":
@@ -41,23 +40,39 @@ namespace laba3_Csharp
                     case "/":
                         result = f1.Divide(f2);
                         break;
+                    case "Сравнить":
+                        int comparison = f1.CompareTo(f2);
+                        if (comparison == -1)
+                            comparisonResult = "Дробь 1 меньше дроби 2";
+                        else if (comparison == 1)
+                            comparisonResult = "Дробь 1 больше дроби 2";
+                        else
+                            comparisonResult = "Дроби равны";
+                        break;
                     default:
-                        throw new InvalidOperationException("Invalid operation selected.");
+                        throw new InvalidOperationException("Не выбрана операция.");
                 }
 
-                // Выводим результат в Label
-                lblResult.Text = result?.ToString() ?? "Error: No result";
+                if (cmbOperation.SelectedItem?.ToString() == "Сравнить")
+                    lblResult.Text = comparisonResult;
+                else
+                    lblResult.Text = result?.ToString() ?? "Ошибка: Нет результата";
+            }
+            catch (FormatException)
+            {
+                lblResult.Text = "Ошибка: Введите корректные числа.";
             }
             catch (Exception ex)
             {
-                // В случае ошибки выводим сообщение
-                lblResult.Text = "Error: " + ex.Message;
+                // Общая ошибка
+                lblResult.Text = "Ошибка: " + ex.Message;
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            cmbOperation.Items.AddRange(new string[] { "+", "-", "*", "/", "Сравнить" });
+            cmbOperation.SelectedIndex = 0; 
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -69,12 +84,10 @@ namespace laba3_Csharp
         {
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
-
-
-
-
-
-    
-
